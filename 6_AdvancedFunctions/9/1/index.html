@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://ru.js.cx/test/libs.js"></script>
+  <script src="test.js"></script>
+  <script>
+    function spy(func) {
+      function wrapper(...args) {
+        wrapper.calls.push(args);
+        return func.apply(this, args);
+      };
+
+      wrapper.calls = [];
+      return wrapper;
+    }
+  </script>
+</html>

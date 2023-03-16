@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://ru.js.cx/test/libs.js"></script>
+  <script src="test.js"></script>
+  <script>
+    function debounce(f, ms) {
+      let isWorking = false;
+
+      return function () {
+        if (!isWorking) {
+          f.apply(this, arguments);
+          isWorking = true;
+          setTimeout(() => {
+            isWorking = false;
+          }, ms);
+        }
+      };
+    }
+  </script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      #mouse {
+        display: inline-block;
+        cursor: pointer;
+        position: fixed;
+      }
+
+      #mouse:focus {
+        outline: 1px dashed black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      Кликните по "изображению" мыши и перемещайте её с помощью клавиш со
+      стрелками.
+    </p>
+
+    <pre id="mouse">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre
+    >
+
+    <script>
+      let mouse = document.getElementById("mouse");
+      mouse.tabIndex = 1;
+
+      mouse.style.left = mouse.getBoundingClientRect().left + "px";
+      mouse.style.top = mouse.getBoundingClientRect().top + "px";
+
+      mouse.style.position = "fixed";
+
+      let move = (event) => {
+        let key = event.key;
+        switch (key) {
+          case "ArrowUp": {
+            mouse.style.top =
+              parseInt(mouse.style.top) - mouse.offsetHeight + "px";
+            return false;
+            break;
+          }
+          case "ArrowDown": {
+            mouse.style.top =
+              parseInt(mouse.style.top) + mouse.offsetHeight + "px";
+            return false;
+            break;
+          }
+          case "ArrowRight": {
+            mouse.style.left =
+              parseInt(mouse.style.left) + mouse.offsetWidth + "px";
+            return false;
+            break;
+          }
+          case "ArrowLeft": {
+            mouse.style.left =
+              parseInt(mouse.style.left) - mouse.offsetWidth + "px";
+            return false;
+            break;
+          }
+        }
+        // console.log(`${mtop}px ${mright}px ${mbottom}px ${mleft}px`);
+        // mouse.style.margin = `${mbottom}px ${mleft}px ${mtop}px ${mleft}px`;
+      };
+
+      let start = () => {
+        mouse.addEventListener("keydown", move);
+        mouse.focus;
+      };
+
+      mouse.addEventListener("click", start);
+    </script>
+  </body>
+</html>

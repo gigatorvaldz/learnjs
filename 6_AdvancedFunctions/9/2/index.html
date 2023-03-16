@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://ru.js.cx/test/libs.js"></script>
+  <script src="test.js"></script>
+  <script>
+    function delay(f, ms) {
+      function wrapper() {
+        return setTimeout(() => {
+          f.apply(this, arguments);
+        }, ms);
+      }
+
+      return wrapper;
+    }
+  </script>
+</html>

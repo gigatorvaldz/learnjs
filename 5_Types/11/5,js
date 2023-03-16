@@ -1,0 +1,7 @@
+let getLastDayOfMonth = (y, m) => {
+  let date = new Date(y, m + 1, 0);
+  return date.getDate();
+};
+
+
+console.log(getLastDayOfMonth(2023, 1));

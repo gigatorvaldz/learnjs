@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John</td>
+          <td>Smith</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>Pete</td>
+          <td>Brown</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>Ann</td>
+          <td>Lee</td>
+          <td>5</td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+      let tbody = document.querySelector("tbody");
+      let rows = tbody.querySelectorAll("tr");
+      let arr = [];
+      for (const row of rows) {
+        let name = row.querySelector("td").innerText;
+        arr.push([name, row]);
+      }
+      arr.sort(function ([aname], [bname]) {
+        return aname.localeCompare(bname);
+      });
+      for (const [name, row] of arr) {
+        tbody.append(row);
+      }
+    </script>
+  </body>
+</html>

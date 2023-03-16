@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+  <h1>Создать список</h1>
+
+  <script>
+    let ul = document.createElement('ul');
+    document.body.append(ul)
+
+    while(true){
+
+        let answer = prompt('li:');
+        console.log(answer);
+        if(answer == "" || answer == null) break;
+        else {
+            let li = document.createElement('li')
+            li.textContent = answer;
+            ul.append(li)
+        }
+    }
+  </script>
+
+</body>
+</html>

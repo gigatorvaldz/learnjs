@@ -1,0 +1,1 @@
+let count = (o) => Object.keys(o).length;

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="divarea">Текст</div>
+    <script>
+      let div = document.getElementById("divarea");
+
+      let textArea = document.createElement("textarea");
+      textArea.classList.add("edit");
+      textArea.value = div.innerText;
+
+      let save = () => {
+        div.innerText = textArea.value;
+        textArea.replaceWith(div);
+      };
+
+      let onKeydown = (event) => {
+        if (event.key == "Enter") textArea.blur();
+      };
+
+      let edit = () => {
+        div.replaceWith(textArea);
+        textArea.focus();
+      };
+
+      div.addEventListener("click", edit);
+      textArea.addEventListener("keydown", onKeydown);
+      textArea.addEventListener("blur", save);
+    </script>
+  </body>
+</html>

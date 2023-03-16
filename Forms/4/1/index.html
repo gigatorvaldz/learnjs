@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <button class="btn">click</button>
+    <div class="modal">
+      <div id="prompt-form-container">
+        <form id="prompt-form">
+          <div id="prompt-message">
+            Введите что-нибудь... <br />Пожалуйста..
+          </div>
+          <input name="text" type="text" />
+          <input type="submit" value="Ok" />
+          <input type="button" name="cancel" value="Отмена" />
+        </form>
+      </div>
+    </div>
+    <script>
+      let modal = document.querySelector(".modal");
+      let pform = document.querySelector("#prompt-form");
+      let button = document.querySelector(".btn");
+
+      modal.style.display = "none";
+
+      let showPrompt = (html, cb) => {
+        modal.style.display = "block";
+
+        let input = modal.querySelector("input[name='text']");
+        let submit = modal.querySelector("input[type='submit']");
+        let cancel = modal.querySelector("input[name='cancel']");
+        let promptMessage = modal.querySelector("#prompt-message");
+
+        promptMessage.innerHTML = html;
+
+        let submitHandler = () => {
+          cb(input.value);
+        };
+
+        let cancelHandler = () => {
+          cb(null);
+          pform.submit();
+        };
+
+        let keyDownHandler = (e) => {
+          console.log(e.key);
+          if (!(e.key == "Escape")) return;
+          cancelHandler();
+        };
+
+        pform.addEventListener("submit", submitHandler);
+        cancel.addEventListener("click", cancelHandler);
+        pform.addEventListener("keydown", keyDownHandler);
+
+        input.focus();
+      };
+
+      let onClickHandler = () => {
+        showPrompt("Введите что-нибудь<br>...умное :)", function (value) {
+          alert(value);
+        });
+      };
+
+      button.addEventListener("click", onClickHandler);
+    </script>
+  </body>
+</html>

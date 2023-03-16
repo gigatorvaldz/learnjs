@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+
+      td,
+      th {
+        border: 1px solid black;
+        padding: 3px;
+        text-align: center;
+      }
+
+      th {
+        font-weight: bold;
+        background-color: #e6e6e6;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="calendar"></div>
+
+    <script>
+      function createCalendar(elem, year, month) {
+        // Создание обёртки
+        let table = document.createElement("table");
+        let tbody = document.createElement("tbody");
+        table.append(tbody);
+
+        // Данные
+        let weeks = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
+        let date = new Date(year, month, 0);
+        let weekdayStart = date.getDay();
+
+        // Создание шапки
+        let week = document.createElement("tr");
+        for (let i = 0; i < 7; i++) {
+          td = document.createElement("td");
+          td.innerText = weeks[i];
+          td.style.backgroundColor = "#999";
+          week.append(td);
+        }
+        tbody.append(week);
+
+        let flag = false;
+        let counter = 0;
+
+        // Создание основной части
+        for (let i = 0; i < date.getDate() / 7; i++) {
+          let tr = document.createElement("tr");
+          tbody.append(tr);
+          for (let k = 0; k < 7; k++) {
+            if (k == weekdayStart) flag = true;
+            if (counter > date.getDate() - 1) flag = false;
+            let td = document.createElement("td");
+            tr.append(td);
+            if (flag) {
+              counter++;
+              td.innerText = counter;
+            }
+          }
+        }
+
+        elem.append(table);
+      }
+
+      createCalendar(calendar, 2012, 9);
+    </script>
+  </body>
+</html>

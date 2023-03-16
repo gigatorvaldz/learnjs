@@ -1,0 +1,14 @@
+.hidden {
+  display: none;
+}
+li {
+  list-style-type: none;
+}
+
+#box {
+  cursor: pointer;
+}
+
+p::first-letter {
+  color: green;
+}

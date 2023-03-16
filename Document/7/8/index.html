@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <span>
+      <span class="h" style="color: red">00</span>
+      :
+      <span class="m" style="color: green">00</span>
+      :
+      <span class="s" style="color: blue">00</span>
+    </span>
+    <div>
+      <!-- клик по этой кнопке вызовет clockStart() -->
+      <input type="button" onclick="clockStart()" value="Старт" />
+
+      <!-- клик по этой кнопке вызовет clockStop() -->
+      <input type="button" onclick="clockStop()" value="Стоп" />
+    </div>
+    <script>
+      let run = true;
+      let timerId;
+
+      let clockStart = () => {
+        let update = () => {
+          let date = new Date();
+          let h = document.querySelector(".h");
+          let m = document.querySelector(".m");
+          let s = document.querySelector(".s");
+
+          let hours = date.getHours();
+          let minutes = date.getMinutes();
+          let seconds = date.getSeconds();
+          hours < 10 ? (h.innerText = "0" + hours) : (h.innerText = hours);
+          minutes < 10
+            ? (m.innerText = "0" + minutes)
+            : (m.innerText = minutes);
+          seconds < 10
+            ? (s.innerText = "0" + seconds)
+            : (s.innerText = seconds);
+        };
+        timerId = setInterval(update, 500);
+
+        update();
+      };
+
+      let clockStop = () => {
+        clearInterval(timerId);
+        timerId = null;
+      };
+    </script>
+  </body>
+</html>
